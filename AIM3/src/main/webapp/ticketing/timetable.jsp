@@ -5,38 +5,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>AIM - Ticketing</title>
+<title>AIM - TimeTable</title>
+<script type="text/javascript">
+	$(document).ready(function(){
+ 		$('#theater_sh li').click(function(){
+			$('#movieList_sh li').remove();
+			
+			$.ajax({
+				url:"./timetableclick.tk",
+				data: {branchCd:$(this).val()},
+				success:function(data){
+
+					$('#movieList_sh').append(data);
+				},
+				error:function(){
+					alert('ajax 실패!');
+				}
+			});
+		});
+	});
+</script>
+</head>
 	<!-- 각종 요소 -->
 	<jsp:include page="../inc/include.jsp" />
 	<!-- 상위 배너 -->
 	<jsp:include page="../inc/topbanner.jsp"/>
 	<!-- 헤더/네비 -->
 	<jsp:include page="../inc/login_nav_bar.jsp" />
-	<!-- 사이드 퀵메뉴 -->
-	<jsp:include page="../inc/side_quick_menu.jsp" />
-
-
-
-<script src="jquery-3.6.1.js"></script>
-<script type="text/javascript">
-var fun = function(){
-	$.getJSON("area.json",function(data){
-		console.log(data);
-		$(data).each(function(idx,item){
-			$('#area').append("<ul><li><a>"+item.area+"</a></li></ul>");
-			});
-		});
-	};
-</script>
-
-</head>
-<body style="">
-
-	<div id="layerCommonAlert" class="layer_wrap layer_alert layer_wrap200"></div>
-	<ul id="layerPopupMulti" class="layer_wrap layerMultiType"></ul>
-
-
-
 
 
 	<div id="contents" class="contents_full contents_reserve">
@@ -47,6 +42,16 @@ var fun = function(){
 						style= "width: 50%; left: 0%;">
 						<span>영화관별 상영시간표</span>
 					</button>
+					<li><button type="button" class="tab_tit"
+						style="width: 50%; left: 50%;">
+						<span>영화별 상영시간표</span>
+					</button>
+					<div class="tab_con ty5">
+						<h5 class="hidden">영화별 상영시간표</h5>
+						<div id="reserveCateMovie" class="section_step_con active">
+							<h3 class="hidden">상영시간</h3>
+						</div>
+					</div></li>
 						<div class="tab_con ty5">
 							<h5 class="hidden">영화관별 상영시간표</h5>
 							<div id="reserveCateCinema" class="section_step_con active">
@@ -58,7 +63,7 @@ var fun = function(){
 										<div class="inner">
 											<div class="cinema_select_wrap cinemaSelect">
 												<ul>
-													<div class="depth"><a href="#none" id="area">부산<em>(9)</em></a>
+													<li class="depth"><a href="#none">부산<em>(9)</em></a>
 														<div class="depth2">
 															<div
 																class="basicCinemaScroll mCustomScrollbar _mCS_53 mCS-autoHide mCS_no_scrollbar"
@@ -70,18 +75,11 @@ var fun = function(){
 																	<div id="mCSB_53_container"
 																	class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y"
 																	style="position: relative; top: 0; left: 0;" dir="ltr">
-																		<ul>
-																			<li class=""><a href="#none">남포</a></li>
-																		
-<!-- 																			<li class=""><a href="#none">다대포</a></li> -->
-<!-- 																			<li class=""><a href="#none">동래</a></li> -->
-<!-- 																			<li class=""><a href="#none">대연</a></li> -->
-<!-- 																			<li class=""><a href="#none">사상</a></li> -->
-<!-- 																			<li class=""><a href="#none">서면</a></li> -->
-<!-- 																			<li class=""><a href="#none">수영</a></li> -->
-<!-- 																			<li class=""><a href="#none">연산</a></li> -->
-<!-- 																			<li class=""><a href="#none">해운대</a></li> -->
-																		</ul>
+																		<ul id="theater_sh">
+																			<c:forEach var="theater" items="${theaterList }" >
+																			<li value="${theater.branchCd }"><a href="#none">${theater.branch_name }</a></li>
+																	</c:forEach>
+																</ul>
 																	</div>
 																</div>
 																	<div id="mCSB_53_scrollbar_vertical"
@@ -99,7 +97,7 @@ var fun = function(){
 																	</div>
 															</div>
 														</div>
-													</div>
+													</li>
 												</ul>
 											</div>
 										</div>
@@ -108,7 +106,7 @@ var fun = function(){
 								
 				<div class="article article_time area__movingbar litype6_time">
 								<div class="group_top">
-									<h4 class="tit">선택한 날짜 출력</h4>
+									<h4 class="tit">2022-11-09(오늘)</h4>
 								</div>
 								<div class="inner">
 									<div class="date_select_wrap bdr dateReserveWrap">
@@ -123,9 +121,10 @@ var fun = function(){
 																		name="radioDate1" data-displayyn="Y"
 																		data-playdate="2022-11-09" data-isplaydate="Y"
 																		data-playweek="오늘" checked=""><strong>9</strong><em>오늘</em></label></span></li>
-														
 														</div>
+	
 													</div>
+												</div>
 												<div class="owl-nav">
 													<button type="button" role="presentation"
 														class="owl-prev disabled">
@@ -178,7 +177,21 @@ var fun = function(){
 																					</dd>
 																					<dt>상영관</dt>
 																					<dd class="hall">3관</dd>
-																				</dl></a></li></ul>
+																				</dl></a></li>
+																		<li class=""><a role="button" href="#none"><dl>
+																					<dt>상영시간</dt>
+																					<dd class="time">
+																						<strong>21:30</strong>
+																						<div class="tooltip">종료 24:21</div>
+																					</dd>
+																					<dt>잔여석</dt>
+																					<dd class="seat">
+																						<strong>88</strong> / 100
+																					</dd>
+																					<dt>상영관</dt>
+																					<dd class="hall">3관</dd>
+																				</dl></a></li>
+																	</ul>
 																</div>
 																<div class="time_select_wrap timeSelect">
 																	<ul class="list_hall">
@@ -198,7 +211,8 @@ var fun = function(){
 																					<dt>상영관</dt>
 																					<dd class="hall">1관</dd>
 																				</dl></a></li>
-																		</ul>
+																	
+																	</ul>
 																</div>
 															</div>
 															<div class="group_time_select">
@@ -267,6 +281,7 @@ var fun = function(){
 													</div>
 												</div>
 											</div></li>
+									
 										<li><button type="button" class="tab_tit"
 												style="width: 25%; left: 25%;">
 												<span>13시 이후</span>
@@ -306,7 +321,7 @@ var fun = function(){
 																					<dt>상영관</dt>
 																					<dd class="hall">3관</dd>
 																				</dl></a></li>
-																	
+																		
 																	</ul>
 																</div>
 																<div class="time_select_wrap timeSelect">
@@ -457,7 +472,11 @@ var fun = function(){
 																					<dt>상영관</dt>
 																					<dd class="hall">6관</dd>
 																				</dl></a></li>
-																		</ul>
+																		
+																		
+																	
+																	
+																	</ul>
 																</div>
 															</div>
 															<div class="group_time_select">
@@ -561,11 +580,39 @@ var fun = function(){
 
 
 	<!-- popup : 예매/step01 -->
+	<div id="layerReserveStep01"
+		class="layer_wrap layer_reserve layer_reserve01_sum2">
+		<div class="layer_header">
+			<h4 class="hidden">예매 내용 확인 팝업</h4>
+			<div id="stepOnePopupHeaderScreen"></div>
+			<button type="button" class="btn_close btnCloseLayer">팝업 닫기</button>
+		</div>
+		<div class="layer_contents">
+			<div class="seat_infor_sum">
+				<div class="group_top" id="stepOnePopupContentsSeatCount"></div>
+				<div class="group_con screen_preview_box">
+					<div class="screen_preview_con">
+						<div class="screen_info cineCont">
+							<!-- 개발영역 -->
+							<div class="smallScreen">
+								<span class="title_screen1">SCREEN</span>
+								<!-- 미니맵 -->
+								<div class="minimap" id="stepOnePopupMiniMap"></div>
+								<!-- //미니맵 -->
+							</div>
+							<!-- //개발영역 -->
+						</div>
+					</div>
+				</div>
+				<div class="group_btm" id="stepOnePopupContentsMsg"></div>
+			</div>
+			<div class="btn_btm_wrap" id="stepOnePopupContentsButton"></div>
+		</div>
+	</div>
+	<!-- //popup : 예매/step01 -->
+
+
 	
-	<!-- //popup : 드라이브 영화관 선택시 -->
-
-	<!-- //step01 -->
-
 
 
 	
@@ -573,3 +620,4 @@ var fun = function(){
 
 
 </body>
+</html>

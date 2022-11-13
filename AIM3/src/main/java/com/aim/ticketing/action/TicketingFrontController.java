@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.aim.ticketing.action.Action;
 import com.aim.ticketing.action.ActionForward;
+import com.mysql.cj.x.protobuf.MysqlxPrepare.Execute;
 
 
 	public class TicketingFrontController extends HttpServlet{
@@ -42,12 +43,40 @@ import com.aim.ticketing.action.ActionForward;
 			ActionForward forward = null;
 			
 			if(command.equals("/TimeTable.tk")) {
-				System.out.println(" C : 패턴1");
+				System.out.println(" C : /TimeTable.tk");
+				System.out.println(" C : 패턴3");
 			
-				forward = new ActionForward();
-				forward.setPath("./ticketing/timetable.jsp");
-				forward.setRedirect(false);
+				action = new TimeTableAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
 			}
+			else if(command.equals("/TimeTableClickAction.tk")) {
+				System.out.println(" C : /TimeTableClickAction.tk");
+				System.out.println(" C : 패턴3");
+				
+				action = new TimeTableClickAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+			else if(command.equals("/TimeTableMoiveAction.tk")) {
+				System.out.println(" C : /TimeTableMoiveAction.tk");
+				
+				action = new TimeTableMoiveAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
 			
 			
 			
