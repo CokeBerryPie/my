@@ -12,7 +12,7 @@ public class TimeTableMClickAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println(" TimeTableClickAction.execute() 호출 ");
+		System.out.println(" TimeTableMClickAction.execute() 호출 ");
 
 		// 데이터 저장
 		int branchCd = Integer.parseInt(request.getParameter("branchCd"));

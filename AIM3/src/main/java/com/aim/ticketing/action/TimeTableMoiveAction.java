@@ -18,6 +18,8 @@ public class TimeTableMoiveAction implements Action {
 		// 영화 선택 정보 (구현 대기중 받아올 예정)
 		
 		// 전체 극장 정보 조회 메서드
+		int branch_Cd = Integer.getInteger(request.getParameter("branch_Cd"));
+	
 		ReservationDAO dao = new ReservationDAO();
 		List<TheaterDTO> theaterList = dao.getTheaterList();
 		

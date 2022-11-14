@@ -19,10 +19,12 @@ import com.mysql.cj.x.protobuf.MysqlxPrepare.Execute;
 				HttpServletResponse response) throws ServletException, IOException {
 			System.out.println(" TicketingFrontController - doProcess() 호출");
 			System.out.println(" GET / POST 방식 상관없이 한번에 처리 ");
+			System.out.println();
+			System.out.println();
 			
 			///1.가상주소계산
-			
-			System.out.println(" C : (1단계 시작) 가상주소 계산 시작 ----------------------- ");
+			System.out.println("==============================================================");
+			System.out.println(" C : (1단계 시작) 가상주소 계산 시작 ");
 			String requestURI = request.getRequestURI();
 			System.out.println(" C : requestURI : "+requestURI);
 			
@@ -32,12 +34,15 @@ import com.mysql.cj.x.protobuf.MysqlxPrepare.Execute;
 			String command = requestURI.substring(ctxPath.length());
 			System.out.println(" C : command : "+command);
 			
-			System.out.println(" C : (1단계 끝) 가상주소 계산 완료 ----------------------- ");
+			System.out.println(" C : (1단계 끝) 가상주소 계산 완료");
+			System.out.println("==============================================================");
 			
 			//1.가상주소계산
-			
+			System.out.println();
+			System.out.println();
 			//2.가상주소매핑
-			System.out.println(" C : (2단계 시작) 가상주소 매핑 시작 ----------------------- ");
+			System.out.println("==============================================================");
+			System.out.println(" C : (2단계 시작) 가상주소 매핑 시작");
 			
 			Action action = null;
 			ActionForward forward = null;
@@ -81,11 +86,14 @@ import com.mysql.cj.x.protobuf.MysqlxPrepare.Execute;
 			
 			
 			
-			System.out.println(" C : (2단계 끝) 가상주소 매핑 완료 ----------------------- ");
+			System.out.println(" C : (2단계 끝) 가상주소 매핑 완료");
+			System.out.println("==============================================================");
 			//2.가상주소매핑
-			
+			System.out.println();
+			System.out.println();
 			//3.페이지 이동
-			System.out.println(" C : (3단계 시작) 페이지 이동 시작 ----------------------- ");
+			System.out.println("==============================================================");
+			System.out.println(" C : (3단계 시작) 페이지 이동 시작 ");
 			
 			if(forward != null) { 
 				
@@ -101,7 +109,8 @@ import com.mysql.cj.x.protobuf.MysqlxPrepare.Execute;
 					dis.forward(request, response);				
 				}
 				
-				System.out.println(" C : (3단계 끝) 페이지 이동 완료 ----------------------- ");
+				System.out.println(" C : (3단계 끝) 페이지 이동 완료");
+				System.out.println("==============================================================");
 				//3.페이지 이동
 				
 			}

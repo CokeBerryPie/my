@@ -21,12 +21,9 @@ public class TimeTableAction implements Action {
 		ReservationDAO dao = new ReservationDAO();
 		List<TheaterDTO> theaterList = dao.getTheaterList();
 		
-		// 영화 시간 조회 메서드
-		List<ScheduleDTO> scheduleFirst = dao.getScheduleList(1);
 		
-		// request 저장 (전체 극장과 영화 시간
+		// request 저장 (전체 극장)
 		request.setAttribute("theaterList", theaterList);
-		request.setAttribute("scheduleFirst", scheduleFirst);
 		
 		// 페이지 이동
 		ActionForward forward = new ActionForward();

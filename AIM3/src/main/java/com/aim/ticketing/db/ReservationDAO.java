@@ -70,7 +70,7 @@ public class ReservationDAO {
 					theaterList.add(dto);
 				}
 				
-				System.out.println(" DAO : 극장 리스트 조회 완료! ");
+				System.out.println(" DAO : 극장 리스트 조회 ");
 				
 				
 			} catch (Exception e) {
@@ -80,6 +80,8 @@ public class ReservationDAO {
 			}
 			return theaterList;
 		} // 극장정보조회
+	   
+	 
 	   
 	   // 상영시간 조회
 	   public List<ScheduleDTO> getScheduleList(int branchCd) {
@@ -99,7 +101,7 @@ public class ReservationDAO {
 				while(rs.next()) {
 					ScheduleDTO dto = new ScheduleDTO();
 					
-					// 영화코드만 따옴
+					// 영화코드를  가져옴
 					dto.setMovieCd(rs.getString("movieCd"));
 					
 					scheduleList.add(dto);

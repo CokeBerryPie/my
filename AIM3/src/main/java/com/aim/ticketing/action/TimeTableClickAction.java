@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.aim.schedule.db.ScheduleDTO;
+import com.aim.theater.db.TheaterDTO;
 import com.aim.ticketing.db.ReservationDAO;
 
 public class TimeTableClickAction implements Action {
@@ -15,16 +16,16 @@ public class TimeTableClickAction implements Action {
 		System.out.println(" TimeTableClickAction.execute() 호출 ");
 
 		// 데이터 저장
-		int branchCd = Integer.parseInt(request.getParameter("branchCd"));
+		int branch_Cd = Integer.parseInt(request.getParameter("branchCd"));
 		
-		// ReservationDAO - getScheduleList() 영화정보 조회 메서드(중복x)
+		// ReservationDAO - theaterList() 극장정보 조회 메서드(중복x)
 		ReservationDAO dao = new ReservationDAO();
-		List<ScheduleDTO> scheduleList = dao.getScheduleList(branchCd);
+		List<TheaterDTO> theaterList = dao.getTheaterList();
 		
-		System.out.println(scheduleList);
+		System.out.println(theaterList);
 		
 		// request 저장
-		request.setAttribute("scheduleList", scheduleList);
+		request.setAttribute("theaterList", theaterList);
 		
 		// 페이지 이동
 		ActionForward forward = new ActionForward();
