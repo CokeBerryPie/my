@@ -47,41 +47,50 @@ import com.mysql.cj.x.protobuf.MysqlxPrepare.Execute;
 			Action action = null;
 			ActionForward forward = null;
 			
-			if(command.equals("/TimeTable.tk")) {
-				System.out.println(" C : /TimeTable.tk");
+			if(command.equals("/TimeTableMovie.tk")) {
+				System.out.println(" C : /TimeTableMovie.tk");
 				System.out.println(" C : 패턴3");
 			
-				action = new TimeTableAction();
-				try {
-					forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-			}
-			else if(command.equals("/TimeTableClickAction.tk")) {
-				System.out.println(" C : /TimeTableClickAction.tk");
-				System.out.println(" C : 패턴3");
-				
-				action = new TimeTableClickAction();
-				try {
-					forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-			}
-			else if(command.equals("/TimeTableMoiveAction.tk")) {
-				System.out.println(" C : /TimeTableMoiveAction.tk");
-				
 				action = new TimeTableMoiveAction();
 				try {
 					forward = action.execute(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
-			
+//			else if(command.equals("/TimeTableClickAction.tk")) {
+//				System.out.println(" C : /TimeTableClickAction.tk");
+//				System.out.println(" C : 패턴3");
+//				
+//				action = new TimeTableClickAction();
+//				try {
+//					forward = action.execute(request, response);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//				
+//			}
+//			else if(command.equals("/TimeTableMoiveAction.tk")) {
+//				System.out.println(" C : /TimeTableMoiveAction.tk");
+//				
+//				action = new TimeTableMoiveAction();
+//				try {
+//					forward = action.execute(request, response);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+			else if(command.equals("/TimeTableMClickAction.tk")) {
+				System.out.println(" C : TimeTableMClickAction.tk ");
+				
+				action = new TimeTableMClickAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 			
 			
 			

@@ -235,7 +235,45 @@ public class MemberDAO {
 	   return result;
    } // 닉네임 중복체크 끝 - NickCheck(mb_nick)
    
-   
+   	// 회원정보 찾기 - MemberInfo
+   	public MemberDTO getMember(String id){
+		MemberDTO dto = null;
+		try {
+			con = getConnection();
+			sql = "select * from member where mb_id=?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new MemberDTO();
+				
+				dto.setMb_id(rs.getString("mb_id"));
+				dto.setMb_pw(rs.getString("mb_pw"));
+				dto.setMb_name(rs.getString("mb_name"));
+				dto.setMb_nick(rs.getString("mb_nick"));
+				dto.setMb_birth(rs.getString("mb_birth"));
+				dto.setMb_gender(rs.getString("mb_gender"));
+				dto.setMb_tel(rs.getString("mb_tel"));
+				dto.setMb_grade(rs.getInt("mb_grade"));
+				dto.setMb_pay(rs.getInt("mb_pay"));
+				dto.setMb_view(rs.getInt("view"));
+
+			}
+			System.out.println(" DAO : 회원 정보 저장 ");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return dto;
+	}
+   	
+   	
+   	// 회원정보 찾기 - MemberInfo
    
    
    

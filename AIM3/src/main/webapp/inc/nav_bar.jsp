@@ -25,7 +25,7 @@
 		<ul class="g_menu2">
 			<li><a href="#">멤버십</a></li>
 			<!-- 멤버십 주소 변경 -->
-			<li><a href="#">고객센터</a></li>
+			<li><a href="./AskAdmin.ask">고객센터</a></li>
 			<!-- 고객센터 주소 변경 -->
 			<li><a href="#">단체관람/대관문의</a></li>
 			<!-- 단체/대관문의 -->
@@ -65,7 +65,7 @@
 				<div>
 					<ul>
 						<li><a href="./Ticketing.tk" title="예매하기">예매하기</a></li>
-						<li><a href="./TimeTable.tk" title="상영시간표">상영시간표</a></li>
+						<li><a href="./TimeTableMovie.tk" title="상영시간표">상영시간표</a></li>
 						<li><a href="#" title="할인안내">할인안내</a></li>
 					</ul>
 				</div></li>

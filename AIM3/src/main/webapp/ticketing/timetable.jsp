@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title> AIM - 상영시간표 </title>
 
 <script src=""></script>
 <script type="text/javascript">
@@ -113,7 +113,6 @@
 															<div id="mCSB_41_container" class="mCSB_container"
 																style="position: relative; top: 0; left: 0;" dir="ltr">
 																<ul>
-																			
 																			<c:forEach var="theater" items="${theaterList }" >
 																				<li value="${theater.branchCd }"><a href="#none">${theater.branch_name }</a></li>
 																			</c:forEach>
@@ -151,13 +150,6 @@
 																		data-playdate="2022-11-15" data-isplaydate="Y"
 																		data-playweek="화"><strong>15</strong><em>화</em></label></span></li>
 														</div>
-														<div class="owl-item active" style="width: 57.929px;">
-															<li class="item"><span class="date"><label><input
-																		type="radio" name="radioDate1" data-displayyn="Y"
-																		data-playdate="2022-11-16" data-isplaydate="Y"
-																		data-playweek="수"><strong>16</strong><em>수</em></label></span></li>
-														</div>
-														
 													</div>
 												</div>
 												<div class="owl-nav">

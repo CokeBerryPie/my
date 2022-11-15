@@ -229,6 +229,17 @@ public class MemberFrontController extends HttpServlet {
 			}
     	} // Logout.aim 끝
     	
+    	else if(command.equals("/MyPage.aim")) { 
+    		System.out.println(" C : /MyPage.aim 호출");
+    		
+    		// MemberInfoAction 
+    		action = new MyPageAction();
+    		try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}// Info.aim 끝
     	
 
     	

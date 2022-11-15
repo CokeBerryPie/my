@@ -11,12 +11,12 @@
   </welcome-file-list>
   
   <servlet>
-  	<servlet-name>TicketingFrontController</servlet-name>
-  	<servlet-class>com.aim.ticketing.action.TicketingFrontController</servlet-class>
+  	<servlet-name>AskFrontController</servlet-name>
+  	<servlet-class>com.aim.ask.action.AskFrontController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>TicketingFrontController </servlet-name>
-  	<url-pattern> *.tk </url-pattern> 
+  	<servlet-name>AskFrontController</servlet-name>
+  	<url-pattern> *.ask </url-pattern> 
   </servlet-mapping>
   
   

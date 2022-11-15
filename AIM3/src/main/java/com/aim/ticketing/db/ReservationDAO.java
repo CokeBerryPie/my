@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.aim.movie.db.MovieDTO;
 import com.aim.schedule.db.ScheduleDTO;
 import com.aim.theater.db.TheaterDTO;
 
@@ -81,8 +82,7 @@ public class ReservationDAO {
 			return theaterList;
 		} // 극장정보조회
 	   
-	 
-	   
+
 	   // 상영시간 조회
 	   public List<ScheduleDTO> getScheduleList(int branchCd) {
 			List<ScheduleDTO> scheduleList = null;
@@ -91,6 +91,7 @@ public class ReservationDAO {
 				con = getConnection();
 				sql = "select distinct movieCd from schedule where branchCd = ?";
 				pstmt = con.prepareStatement(sql);
+				
 				pstmt.setInt(1, branchCd);
 				
 				rs = pstmt.executeQuery();
@@ -101,7 +102,7 @@ public class ReservationDAO {
 				while(rs.next()) {
 					ScheduleDTO dto = new ScheduleDTO();
 					
-					// 영화코드를  가져옴
+					// 영화코드를  가져옴(영화나열)
 					dto.setMovieCd(rs.getString("movieCd"));
 					
 					scheduleList.add(dto);
