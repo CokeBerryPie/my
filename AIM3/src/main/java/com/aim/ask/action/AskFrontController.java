@@ -43,7 +43,13 @@ public class AskFrontController extends HttpServlet {
     		forward.setRedirect(false);
     		
     	}
-    	else if(command.equals("./"))
+    	else if(command.equals("./Write.ask")) {
+    		System.out.println(" C : /Write.ask 실행");
+    		System.out.println(" C : 패턴2");
+    		
+    		// WriteAction() 객체
+    		
+    	}
 
     	
     	System.out.println("C : 2. 가상주소 매핑 끝\n");
