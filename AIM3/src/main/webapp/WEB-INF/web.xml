@@ -10,16 +10,7 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   
-  <servlet>
-  	<servlet-name>AskFrontController</servlet-name>
-  	<servlet-class>com.aim.ask.action.AskFrontController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>AskFrontController</servlet-name>
-  	<url-pattern> *.ask </url-pattern> 
-  </servlet-mapping>
-  
-  
+
   <filter>
     <filter-name>Set Character Encoding</filter-name>
     <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>

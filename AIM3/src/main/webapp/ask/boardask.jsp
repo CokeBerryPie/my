@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title> AIM (All In Movie!) - 고객센터 </title>
+
+<script type="text/javascript">
+	
+
+</script>
+
 </head>
 <body style="">
 	<!-- 각종 요소 -->
@@ -19,24 +25,21 @@
 <div id="contents" class="contents_customer area__movingbar litype5"
 		style="">
 		<div class="title_top">
-			<h2 class="tit"> AIM (All In Movie!) - 고객센터</h2>
+			<h2 class="tit"> 고객센터 - 1:1 문의 </h2>
 		</div>
 		<ul class="tab_wrap outer actionmovingbar">
 			<li class="active">
 				<button type="button" class="tab_tit" style="width: 50%; left: 0%;">
-					<span>1:1문의</span>
+					<span>1:1 문의</span>
 				</button>
 				<div class="tab_con">
-					<h3 class="hidden">1:1문의</h3>
+					<h3 class="hidden">1:1 문의</h3>
 					<div class="con_top">
-						<div class="ico_tit qus">FAQ를 이용하시면 궁금증을 더 빠르게 해결하실 수 있습니다.<ul
-								class="list_txt mt10">
+						<div class="ico_tit qus">FAQ를 이용하시면 궁금증을 더 빠르게 해결하실 수 있습니다.
+							<ul	class="list_txt mt10">
 								<li>1:1 문의글 답변 운영시간 10:00 ~ 19:00</li>
 								<li>접수 후 48시간 안에 답변 드리겠습니다.</li>
 							</ul>
-						</div>
-						<div class="btn_wrap">
-							<a href="#none" class="btn_col4 ty5"> MY 문의내역</a>
 						</div>
 					</div>
 					<dl class="contxt_type1">
@@ -51,6 +54,7 @@
 							<span class="txt_req">필수입력</span>
 						</div>
 					</div>
+				<form action="./Write.ask" method="post" enctype="multipart/form-data">
 					<table class="tbl_form" summary="문의내용작성 테이블">
 						<caption>문의 내용을 작성해주세요</caption>
 						<colgroup>
@@ -58,20 +62,21 @@
 							<col style="width: auto;">
 						</colgroup>
 						<tbody>
+						
 							<tr>
 								<th scope="row" class="req">분류</th>
 								<td>
-									<select title="문의내용 분류선택" id="ask_group01">
+									<select title="문의내용 분류선택" name="ask_group01">
 										<option	value="0">분류 선택</option>
 										<option value="600">영화관</option>
 										<option value="700">영화</option>
 										<option value="800">멤버십</option>
 										<option value="900">예매/결제</option>
-										<option value="1000">이벤트/시사회/무대인사</option>
+										<option value="1000">이벤트</option>
 										<option value="1100">홈페이지/모바일</option>
 										<option value="1200">개인정보</option>
 									</select>
-									<select title="문의내용 문의종류" id="ask_group02">
+									<select title="문의내용 문의종류" name="ask_group02">
 										<option value="0"> 문의 종류 </option>
 										<option value="3">문의</option>
 										<option value="1">칭찬</option>
@@ -80,11 +85,27 @@
 									</select>
 								</td>
 							</tr>
+							
+							<tr>
+								<th scope="row" class="req">종류</th>
+								<td>
+									<input type="radio" name="rdo00" id="radio01" class="aNoneSelect" checked>
+										<label for="radio01">영화 문의</label>
+									<input type="radio" name="rdo00" id="radio02">
+										<label for="radio02">기타 문의</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<div class="bx_file ">
+											<button class="btn_col3 ty5">영화관선택</button>
+										<div id="layerSelectCinema" class="layer_wrap ty3 layer_select_cinema" style="left: 0px; top: 0px;"></div>
+										<div class="file_item"></div>
+									</div>
+								</td>
+							</tr>
+							
 							<tr>
 								<th scope="row" class="req">제목</th>
 								<td>
 									<div class="bx_textarea">
-										<input type="text" class="ty2 w_full" placeholder="제목을 입력해주세요" title="문의내용 제목입력" id="iDtitle">
+										<input type="text" class="ty2 w_full" placeholder="제목을 입력해주세요" title="문의내용 제목입력" name="ask_title">
 										<span class="txt_count"><em id="ask_title">0</em>/한글<em> 50</em>자</span>
 									</div>
 								</td>
@@ -93,7 +114,7 @@
 								<th scope="row" class="req">내용</th>
 								<td>
 									<div class="bx_textarea">
-										<textarea class="ty2" cols="10" rows="10" id="ask_contents" 
+										<textarea class="ty2" cols="10" rows="10" name="ask_contents" 
 										title="문의내용을 입력해주세요" 
 										placeholder="내용 및 첨부파일에 개인정보(카드번호, 계좌번호, 주민번호)가 포함되지 않도록 유의하여 입력해주세요.">
 										</textarea>
@@ -104,22 +125,27 @@
 								<th scope="row">첨부파일</th>
 								<td>
 									<div class="bx_file ">
-										<input type="file" id="ask_file" name="file">
+										<input type="file" id="file" name="ask_file">
 											<label class="" for="file">파일선택</label>
-										<div class="file_item"></div>
-									</div><span class="txt_caution1 fl_r with_inp">첨부 파일형식 : jpg / jpeg / png / bmp / gif / pdf (5MB X 1개)</span>
+									<div class="file_item">
+									<span class="" id="iDfileUpload1"> ${id } </span>
+									<button class="btn_del">삭제</button></div>
+									</div>
+									<span class="txt_caution1 fl_r with_inp">첨부 파일형식 : jpg / jpeg / png / bmp / gif / pdf (5MB X 1개)</span>
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">답변수신 여부</th>
-									<td><input type="checkbox" id="iDemailReplyYN">
+								<th scope="row" name="ask_re">답변수신 여부</th>
+									<td><input type="checkbox" >
 										<label for="iDemailReplyYN">이메일 알림받기</label>
-										<input type="checkbox" id="iDsmsReplyYN"><label for="iDsmsReplyYN">SMS 알림받기</label>
+										<input type="checkbox" >
+										<label for="iDsmsReplyYN">SMS 알림받기</label>
 										<span class="txt_caution1 fl_r ">문의에 대한 답변은 이메일로 발송되므로 이메일로 답변 알림 받기는 필수입니다. </span>
 									</td>
 							</tr>
 						</tbody>
 					</table>
+			
 					<div class="con_tit ty2">
 						<h4 class="tit">고객정보</h4>
 						<div class="group_rgt">
@@ -135,27 +161,27 @@
 						<tbody>
 							<tr>
 								<th scope="row" class="req">성명</th>
-								<td><input type="text" class="ty2 inp_name" id="ask_name" title="성명을 입력해주세요"></td>
+								<td><input type="text" class="ty2 inp_name" name="ask_name" title="성명을 입력해주세요"></td>
 							</tr>
 							<tr>
 								<th scope="row" class="req">연락처</th>
-								<td><select class="ty2" title="연락처" id="ask_tel01">
+								<td><select class="ty2" title="연락처" name="ask_tel01">
 										<option value="">선택</option>
-										<option value="010" >010</option>
+										<option value="010">010</option>
 										<option value="011">011</option>
 										<option value="016">016</option>
 										<option value="017">017</option>
 										<option value="018">018</option>
 										<option value="019">019</option>
 									</select>
-									<input type="text"	class="ty2 inp_phon" id="ask_tel02" title="연락처 가운데 숫자" maxlength="4" value="">
-									<input type="text"	class="ty2 inp_phon" id="ask_tel03" title="연락처 끝 숫자" maxlength="4" value=""></td>
+									<input type="text"	class="ty2 inp_phon" name="ask_tel02" title="연락처 가운데 숫자" maxlength="4" value="">
+									<input type="text"	class="ty2 inp_phon" name="ask_tel03" title="연락처 끝 숫자" maxlength="4" value=""></td>
 							</tr>
 							<tr>
 								<th scope="row" class="req">이메일</th>
 								<td>
-									<input type="text" class="ty2 inp_id" title="이메일 아이디"	id="ask_email01" value=""> @
-									<input type="text" class="ty2 inp_emai" title="이메일 주소" id="ask_email02" value=""><span
+									<input type="text" class="ty2 inp_id" title="이메일 아이디"	name="ask_email01" value=""> @
+									<input type="text" class="ty2 inp_emai" title="이메일 주소" name="ask_email02" value=""><span
 									class="txt_caution1 fl_r with_inp">답변 등록시 해당 이메일로 자동 발송 됩니다.</span></td>
 							</tr>
 						</tbody>
@@ -183,15 +209,18 @@
 							<input type="radio" name="rdo01" id="radio10" class="iDrdoAgreeY"><label for="radio10">동의 </label>
 								<input type="radio" name="rdo01" id="radio11" checked=""><label for="radio11">동의하지않음</label>
 						</div>
+						
 						<div class="btn_btm_wrap">
-							<a href="#none" class="btn_col3 ty6">취소</a>
-							<a href="#none" class="btn_col2 ty6">확인</a>
+							<input type="button" class="btn_col3 ty6" value="취소하기" onclick="location.href='./Main.aim';">
+							<input type="submit" class="btn_col2 ty6" value="문의하기" >
+							
 						</div>
+						</form>
 					</div>
 				</div></li>
 		<li>
 				<button type="button" class="tab_tit" style="width: 50%; left: 50%;">
-					<span>내가 문의한 문의내용 보기</span>
+					<span>문의 내용 목록</span>
 				</button></li>
 			<li class="wrap_nav_underline"><span class="nav_underline"></span></li>
 		</ul>
